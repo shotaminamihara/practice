@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class Company extends Model
 {
-    public function getProducts_list() {
-        // companiesテーブルからデータを取得
-        $companies = DB::table('companies')->get();
-        return $companies;
-    }
+    protected $table = 'companies';
+
     public function products(){
         return $this->hasMany(Product::class);
     }
+    
 }

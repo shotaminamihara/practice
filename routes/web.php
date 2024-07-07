@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/products_list', [App\Http\Controllers\Product_listController::class, 'showProducts_list'])->name('products_list');
-Route::post('/products_list', [App\Http\Controllers\Product_listController::class, 'showProducts_search'])->name('products_search');
-Route::delete('/products_list/{id}', [App\Http\Controllers\Product_listController::class, 'showProducts_delete'])->name('products_delete');
-Route::get('/products/detail/{id}', [App\Http\Controllers\Product_detailController::class, 'showProducts_detail'])->name('products_detail');
-Route::get('/products_registration', [App\Http\Controllers\Product_listController::class, 'showProducts_registration'])->name('products_registration');
-Route::post('/products_registration', [App\Http\Controllers\Product_registrationController::class, 'showProducts_registration'])->name('products_registration');
-Route::get('/products/update/{id}', [App\Http\Controllers\Product_detailController::class, 'showProducts_edit'])->name('products_edit');
-Route::post('/products/update/{id}', [App\Http\Controllers\Product_updateController::class, 'showProducts_update'])->name('products_update');
+Route::get('/products_list', [App\Http\Controllers\Controller::class, 'showProducts_list'])->name('products_list');
+Route::post('/products_list', [App\Http\Controllers\Controller::class, 'showProducts_search'])->name('products_search');
+Route::delete('/products_list/{id}', [App\Http\Controllers\Controller::class, 'showProducts_delete'])->name('products_delete');
+Route::get('/products_detail/{id}', [App\Http\Controllers\Controller::class, 'showProducts_detail'])->name('products_detail');
+Route::post('/products_detail/{id}', [App\Http\Controllers\Controller::class, 'showProducts_edit'])->name('products_edit');
+Route::get('/products_registration', [App\Http\Controllers\Controller::class, 'showProducts_registration'])->name('products_registration');
+Route::post('/products_registration', [App\Http\Controllers\Controller::class, 'showProducts_registrations'])->name('products_registrations');
+Route::get('/products_edit/{id}', [App\Http\Controllers\Controller::class, 'showCompanies_select'])->name('companies_select');
+Route::post('/products_update/{id}', [App\Http\Controllers\Controller::class, 'showProducts_update'])->name('products_update');
+
+
+
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\Controller::class, 'index'])->name('home');
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');

@@ -2,7 +2,7 @@ h1{
     font-weight: normal;
     font-size: 20px;
 }
-input[type=text],[type=number]{
+input[type=text],[type=number],select{
     width: 200px;
     height: 25px;
     border-radius: 4px;

@@ -7,7 +7,7 @@
     </head>
 	<body>
         <h1>商品一覧画面</h1>
-        <form action="{{route('products_list')}}" method="POST">
+        <form action="{{route('products_list')}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <input type="text" class="searchbox" id="searchbox" name="searchbox" placeholder="検索キーワード">
             <select id="selectbox" class="selectbox" name="selectbox">
@@ -38,7 +38,7 @@
                 @foreach($products as $product)
                 <tr>
                     <td>{{$product->id}}.</td>
-                    <td>{{$product->img_path}}</td>
+                    <td><img src="{{asset($product->img_path)}}" class="product_image"></td>
                     <td>{{$product->product_name}}</td>
                     <td>¥{{$product->price}}</td>
                     <td>{{$product->stock}}</td>

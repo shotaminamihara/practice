@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <h1>商品情報編集画面</h1>
-        <form href="{{route('products_update',['id'=>$product->id])}}" method="POST">
+        <form action="{{route('products_update',['id'=>$product->id])}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <div class="form">
                 <div>
@@ -20,7 +20,13 @@
                 </div>
                 <div>
                     <label for="text4">メーカー</label>
-                    <input type="text" name="company_name" value="{{$product->company->company_name}}">               
+                    <select name="company_id">
+                        @foreach($companies as $company)
+                            <option value="{{$company->id}}" {{$product->company_id == $company->id ? 'selected':''}}>
+                                {{$company->company_name}}
+                            </option>
+                        @endforeach
+                    </select>                
                 </div>
                 <div>
                     <label for="text5">価格</label>
@@ -36,7 +42,7 @@
                 </div>
                 <div>
                     <label for="text2">商品画像</label>
-                    <input type="file" name="img_path" value="{{$product->img_path}}">                
+                    <input type="file" name="image" value="{{$product->img_path}}">                
                 </div>
                 <div class="container">
                     <div class="button1">

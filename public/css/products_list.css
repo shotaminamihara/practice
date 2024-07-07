@@ -55,3 +55,9 @@ padding: 3px;
 width: 60px;
 color: white;
 }
+
+.product_image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
+}

@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
-    public function getProducts_list() {
-        // productsテーブルからデータを取得
-        $products = DB::table('products')->get();
-        return $products;
-    }
+    protected $table = 'products';
 
     public function company(){
         return $this->belongsTo(Company::class);
@@ -20,4 +16,33 @@ class Product extends Model
     public function sale(){
         return $this->hasMany(Sale::class);
     }
+
+    public function getProducts_list()
+    {
+        $companies = DB::table('companies')->get();
+        $products = DB::table('products')
+                ->join('companies', 'products.company_id', '=', 'companies.id')
+                ->select('products.*', 'companies.company_name as company_name')
+                ->get();
+
+        return compact('products', 'companies');
+    }
+
+    public function getProducts_search($searchbox, $selectbox,$request){
+        $companies = DB::table('companies')->get();
+        $searchbox = $request->input('searchbox');
+        $selectbox = $request->input('selectbox');
+        $products = DB::table('products')
+            ->join('companies','products.company_id','=','companies.id')
+            ->select('products.*','companies.company_name')
+            ->where('companies.company_name','like','%'.$selectbox.'%')
+            ->where('products.product_name','like','%'.$searchbox.'%')
+            ->get();
+
+        return compact('products','companies');
+    }
+
+    
+
+    
 }

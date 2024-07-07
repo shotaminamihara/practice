@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <h1>商品新規登録画面</h1>
-        <form action="{{route('products_registration')}}" method="POST">
+        <form action="{{route('products_registration')}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <div class="form">
                 <div>
@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <label for="text6">商品画像</label>
-                    <input type="file" name="img_path">
+                    <input type="file" name="image">
                 </div>
                 <div class="container">
                     <div class="button1">    

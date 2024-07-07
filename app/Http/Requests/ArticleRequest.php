@@ -24,7 +24,12 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_name' => 'required',
+            'company_name' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
         ];
     }
 }

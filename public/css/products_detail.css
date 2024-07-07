@@ -11,11 +11,11 @@ td,textarea{
 textarea{
     height: 40px;
 }
-.form{
+.form1{
     border: 1px solid;
     width: 380px;
     padding: 20px 0 20px 10px;
-    height: 400px;
+    height: 100%;
 }
 label{
     display: inline-block;
@@ -27,8 +27,15 @@ label[for="text7"] {
     position: relative;
     top: -50px;
 }
+label[for="text2"] {
+    position: relative;
+    top: -80px;
+}
 .container {
     width: 200px;
+    margin-left: 10px;
+    position: relative;
+    top: -50px;
 }
 .button1 input {
     margin-right: 60px;
@@ -42,4 +49,9 @@ label[for="text7"] {
     width: 60px;
     border-radius: 4px;
     float: right;
+}
+.product_image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
 }
