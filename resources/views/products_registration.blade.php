@@ -7,6 +7,15 @@
 	</head>
 	<body>
         <h1>商品新規登録画面</h1>
+        @if ($errors->any())
+            <div class="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{route('products_registration')}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <div class="form">

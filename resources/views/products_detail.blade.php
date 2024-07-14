@@ -7,6 +7,15 @@
 	</head>
 	<body>
         <h1>商品情報詳細画面</h1>
+        @if ($errors->any())
+            <div class="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="form">
             <form action="{{route('products_detail',['id'=>$product->id])}}" class="form1"  method="POST" enctype='multipart/form-data'>
                 @csrf
@@ -36,7 +45,7 @@
                 </div>
                 <div>
                     <label for="text7">コメント</label>
-                    <textarea>{{$product->comment}}</textarea>
+                    <td>{{$product->comment}}</td>
                 </div>
             </form>
             <div class="container">

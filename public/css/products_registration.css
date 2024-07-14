@@ -2,6 +2,10 @@ h1{
     font-weight: normal;
     font-size: 20px;
 }
+ul{
+    list-style: none;
+    color: red;
+}
 input[type=text],[type=number],select,textarea{
     width: 280px;
     height: 25px;

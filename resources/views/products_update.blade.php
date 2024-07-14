@@ -38,11 +38,11 @@
                 </div>
                 <div>
                     <label for="text7">コメント</label>
-                    <textarea type="text" value="{{$product->comment}}">{{$product->comment}}</textarea>
+                    <textarea type="text"  name="comment" value="{{$product->comment}}">{{$product->comment}}</textarea>
                 </div>
                 <div>
                     <label for="text2">商品画像</label>
-                    <input type="file" name="image" value="{{$product->img_path}}">                
+                    <input type="file" name="image">                
                 </div>
                 <div class="container">
                     <div class="button1">

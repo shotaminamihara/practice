@@ -40,9 +40,5 @@ class Product extends Model
             ->get();
 
         return compact('products','companies');
-    }
-
-    
-
-    
+    }    
 }

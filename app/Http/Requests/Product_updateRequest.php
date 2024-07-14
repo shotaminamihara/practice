@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticleRequest extends FormRequest
+class Product_updateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,19 @@ class ArticleRequest extends FormRequest
     {
         return [
             'product_name' => 'required',
-            'company_name' => 'required',
+            'company_id' => 'required',
             'price' => 'required',
             'stock' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'product_name.required' => '商品名は必須です。',
+            'company_id.required' => 'メーカー名は必須です。',
+            'price.required' => '値段は必須です。',
+            'stock.required' => '在庫数は必須です。',
         ];
     }
 }
