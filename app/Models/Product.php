@@ -19,21 +19,25 @@ class Product extends Model
 
     public function getProducts_list()
     {
-        $companies = DB::table('companies')->get();
+        $companies = DB::table('companies')
+            ->select('id','company_name')
+            ->get();
         $products = DB::table('products')
-                ->join('companies', 'products.company_id', '=', 'companies.id')
-                ->select('products.*', 'companies.company_name as company_name')
-                ->get();
+            ->join('companies', 'company_id', '=', 'companies.id')
+            ->select('products.*', 'companies.company_name')
+            ->get();
 
         return compact('products', 'companies');
     }
 
     public function getProducts_search($searchbox, $selectbox,$request){
-        $companies = DB::table('companies')->get();
+        $companies = DB::table('companies')
+            ->select('id','company_name')
+            ->get();
         $searchbox = $request->input('searchbox');
         $selectbox = $request->input('selectbox');
         $products = DB::table('products')
-            ->join('companies','products.company_id','=','companies.id')
+            ->join('companies','company_id','=','companies.id')
             ->select('products.*','companies.company_name')
             ->where('companies.company_name','like','%'.$selectbox.'%')
             ->where('products.product_name','like','%'.$searchbox.'%')
