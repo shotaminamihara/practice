@@ -10,8 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\Product_registrationRequest;
-use App\Http\Requests\Product_updateRequest;
+use App\Http\Requests\ProductRequest;
 
 
 class PracticeController extends Controller
@@ -80,7 +79,7 @@ class PracticeController extends Controller
         }
     }
 
-    public function showProducts_registrations(Product_registrationRequest $request) {
+    public function showProducts_registrations(ProductRequest $request) {
         try{
             $validatedData = $request->validated();
 
@@ -119,7 +118,7 @@ class PracticeController extends Controller
         return view('products_update',compact('product','companies'));
     }
 
-    public function showProducts_update(Product_updateRequest  $request,$id) {
+    public function showProducts_update(ProductRequest  $request,$id) {
         $product = Product::findOrFail($id);
         
         $company = Company::find($product->company_id);

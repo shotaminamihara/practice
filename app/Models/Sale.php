@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    public function getList() {
-        $sales = DB::table('sales')->get();
+    protected $table = 'sales';
 
+    public function getList() {
         return $this->belongsTo(Product::class);
     }
 }

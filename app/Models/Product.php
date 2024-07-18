@@ -24,7 +24,7 @@ class Product extends Model
             ->get();
         $products = DB::table('products')
             ->join('companies', 'company_id', '=', 'companies.id')
-            ->select('products.*', 'companies.company_name')
+            ->select('products.id','company_id','product_name','price','stock','img_path','companies.company_name')
             ->get();
 
         return compact('products', 'companies');
@@ -38,7 +38,7 @@ class Product extends Model
         $selectbox = $request->input('selectbox');
         $products = DB::table('products')
             ->join('companies','company_id','=','companies.id')
-            ->select('products.*','companies.company_name')
+            ->select('products.id','company_id','product_name','price','stock','img_path','companies.company_name')
             ->where('companies.company_name','like','%'.$selectbox.'%')
             ->where('products.product_name','like','%'.$searchbox.'%')
             ->get();
