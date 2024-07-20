@@ -10,7 +10,7 @@ class Company extends Model
 {
     protected $table = 'companies';
 
-    public function products(){
+    public function companies(){
         return $this->hasMany(Product::class);
     }
 }

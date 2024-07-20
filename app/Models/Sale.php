@@ -9,7 +9,7 @@ class Sale extends Model
 {
     protected $table = 'sales';
 
-    public function getList() {
+    public function sales() {
         return $this->belongsTo(Product::class);
     }
 }

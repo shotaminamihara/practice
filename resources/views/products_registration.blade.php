@@ -25,7 +25,7 @@
                 </div>
                 <div>
                 <label for="text2">メーカー名</label>
-                    <select name="company_name">
+                    <select name="company_id">
                         <option value="">メーカー名</option>
                         @foreach($companies as $company)
                             <option value="{{$company->id}}">{{$company->company_name}}</option>

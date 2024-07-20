@@ -25,7 +25,6 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name' => 'required',
-            'company_name' => 'required',
             'company_id' => 'required',
             'price' => 'required',
             'stock' => 'required',
@@ -36,7 +35,6 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name.required' => '商品名は必須です。',
-            'company_name.required' => 'メーカー名は必須です。',
             'company_id.required' => 'メーカー名は必須です。',
             'price.required' => '値段は必須です。',
             'stock.required' => '在庫数は必須です。',

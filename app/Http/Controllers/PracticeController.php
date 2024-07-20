@@ -57,26 +57,9 @@ class PracticeController extends Controller
     }
     
     public function showProducts_registration() {
-        $companies = Company::all();
-        
+        $companies = Company::select('id','company_name')->get();
 
         return view('products_registration', compact('companies'));
-    }
-
-    public function showProducts_delete($id) {
-        try{
-            $product = Product::findOrFail($id);
-            $rowCount = $product->rowCount;
-            $product->delete();
-            $sale = Sale::where('product_id',$id)->first();
-            if($sale){
-                $sale->delete();
-            }
-
-            return redirect()->route('products_list');
-        }catch(ValidationException $e){
-            return back()->withErrors($e->valedator)->withInput();
-        }
     }
 
     public function showProducts_registrations(ProductRequest $request) {
@@ -103,8 +86,24 @@ class PracticeController extends Controller
         }
     }
 
+    public function showProducts_delete($id) {
+        try{
+            $product = Product::findOrFail($id);
+            $rowCount = $product->rowCount;
+            $product->delete();
+            $sale = Sale::where('product_id',$id)->first();
+            if($sale){
+                $sale->delete();
+            }
+
+            return redirect()->route('products_list');
+        }catch(ValidationException $e){
+            return back()->withErrors($e->valedator)->withInput();
+        }
+    }
+
     public function showProducts_detail($id) {
-        $products = Product::all();
+        $products = Product::select('id','company_id','product_name','price','stock','comment','img_path')->get();
         $product = Product::find($id);
         $company = Company::find($product->company_id);
         $sale = Sale::where('product_id', $id)->get();
@@ -114,7 +113,7 @@ class PracticeController extends Controller
     
     public function showProducts_edit($id){
         $product = Product::find($id);
-        $companies = Company::all();
+        $companies = Company::select('id','company_name')->get();
         return view('products_update',compact('product','companies'));
     }
 
@@ -123,7 +122,7 @@ class PracticeController extends Controller
         
         $company = Company::find($product->company_id);
         $sale = Sale::where('product_id', $id)->get();
-        $companies = Company::all();
+                $companies = Company::select('id','company_name')->get();
         try{
             $validatedData = $request->validated();
             if($request->hasFile('image')){
@@ -132,7 +131,6 @@ class PracticeController extends Controller
                 $product->img_path = 'storage/images/'.$filename;
             }
 
-            Product::findOrFail($id);
             $product->product_name = $validatedData['product_name'];
             $product->price = $validatedData['price'];
             $product->stock = $validatedData['stock'];
