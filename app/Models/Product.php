@@ -17,11 +17,14 @@ class Product extends Model
         return $this->hasMany(Sale::class);
     }
 
-    public function getProducts_list()
-    {
-        $companies = DB::table('companies')
-            ->select('id','company_name')
-            ->get();
+    public function getCompanies(){
+    return DB::table('companies')
+        ->select('id', 'company_name')
+        ->get();
+    }
+
+    public function getProducts_list(){
+        $companies = $this->getCompanies();
         $products = DB::table('products')
             ->join('companies', 'company_id', '=', 'companies.id')
             ->select('products.*','companies.company_name')
@@ -31,9 +34,7 @@ class Product extends Model
     }
 
     public function getProducts_search($searchbox, $selectbox,$request){
-        $companies = DB::table('companies')
-            ->select('id','company_name')
-            ->get();
+        $companies = $this->getCompanies();
         $searchbox = $request->input('searchbox');
         $selectbox = $request->input('selectbox');
         $products = DB::table('products')

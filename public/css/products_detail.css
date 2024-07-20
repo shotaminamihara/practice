@@ -6,7 +6,7 @@ ul{
     list-style: none;
     color: red;
 }
-td{
+span{
     width: 200px;
     height: 25px;
     border-radius: 4px;

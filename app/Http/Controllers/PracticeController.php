@@ -103,12 +103,11 @@ class PracticeController extends Controller
     }
 
     public function showProducts_detail($id) {
-        $products = Product::select('id','company_id','product_name','price','stock','comment','img_path')->get();
-        $product = Product::find($id);
+        $product = Product::with('company')->find($id);
         $company = Company::find($product->company_id);
-        $sale = Sale::where('product_id', $id)->get();
+        $sale = Sale::where('product_id', $id)->select('id','product_id')->get();
 
-        return view('products_detail', compact('products','product', 'company', 'sale'));
+        return view('products_detail', compact('product', 'company', 'sale'));
     }
     
     public function showProducts_edit($id){
@@ -121,8 +120,8 @@ class PracticeController extends Controller
         $product = Product::findOrFail($id);
         
         $company = Company::find($product->company_id);
-        $sale = Sale::where('product_id', $id)->get();
-                $companies = Company::select('id','company_name')->get();
+        $sale = Sale::where('product_id', $id)->select('id','product_id')->get();
+        $companies = Company::select('id','company_name')->get();
         try{
             $validatedData = $request->validated();
             if($request->hasFile('image')){

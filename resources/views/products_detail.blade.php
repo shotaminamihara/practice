@@ -21,31 +21,31 @@
                 @csrf
                 <div>
                     <label for="text1">ID</label>
-                    <td>{{$product->id}}.</td>
+                    <span>{{$product->id}}.</span>
                 </div>
                 <div>
                     <label for="text2">商品画像</label>
-                    <td><img src="{{asset($product->img_path)}}" class="product_image"></td>
+                    <span><img src="{{asset($product->img_path)}}" class="product_image"></span>
                 </div>
                 <div>
                     <label for="text3">商品名</label>
-                    <td>{{$product->product_name}}</td>                
+                    <span>{{$product->product_name}}</span>                
                 </div>
                 <div>
                     <label for="text4">メーカー</label>
-                    <td>{{$product->company->company_name}}</td>                
+                    <span>{{$product->company->company_name}}</span>                
                 </div>
                 <div>
                     <label for="text5">価格</label>
-                    <td>￥{{$product->price}}</td>                
+                    <span>￥{{$product->price}}</span>                
                 </div>
                 <div>
                     <label for="text6">在庫数</label>
-                    <td>{{$product->stock}}</td>                
+                    <span>{{$product->stock}}</span>                
                 </div>
                 <div>
                     <label for="text7">コメント</label>
-                    <td>{{$product->comment}}</td>
+                    <span>{{$product->comment}}</tspand>
                 </div>
             </form>
             <div class="container">
