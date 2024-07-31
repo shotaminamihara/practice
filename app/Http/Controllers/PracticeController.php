@@ -49,11 +49,24 @@ class PracticeController extends Controller
     public function showProducts_search(Request $request){
         $searchbox = $request->input('searchbox');
         $selectbox = $request->input('selectbox');
+        $priceMin = $request->input('priceMin');
+        $priceMax = $request->input('priceMax');
+        $stockMin = $request->input('stockMin');
+        $stockMax = $request->input('stockMax');
 
         $productModel = new Product();
-        $data = $productModel->getProducts_search($searchbox, $selectbox, $request);
+        $data = $productModel->getProducts_search($searchbox, $selectbox, $priceMin, $priceMax, $stockMin, $stockMax, $request);
 
-        return view('products_list', $data);
+        if ($request->ajax()) {
+            return response()->json(['data' => view('products_list', $data)->render()]);
+        } else {
+            $companies = Company::select('id', 'company_name')->get();
+            $products = DB::table('products')
+            ->join('companies', 'company_id', '=', 'companies.id')
+            ->select('products.*', 'companies.company_name')
+            ->get();
+            return view('products_list', compact('data', 'companies','products'));
+        }
     }
     
     public function showProducts_registration() {
@@ -71,7 +84,7 @@ class PracticeController extends Controller
             $product->price = $validatedData['price'];
             $product->stock = $validatedData['stock'];
             $product->comment = $request->comment;
-            $product->company_id = $validatedData['company_name'];
+            $product->company_id = $validatedData['company_id'];
             if($request->hasFile('image')){
                 $filename = uniqid().'.'.$request->image->extension();
                 $request->image->storeAs('public/images',$filename);

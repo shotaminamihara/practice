@@ -13,4 +13,6 @@ class Company extends Model
     public function companies(){
         return $this->hasMany(Product::class);
     }
+
+    
 }

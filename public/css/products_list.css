@@ -13,7 +13,7 @@ margin-right: 20px;
 padding: 4px;
 border: 1px solid #ccc;
 border-radius: 4px;
-width: 240px;
+width: 250px;
 margin-right: 20px;
 }
 .search {
@@ -23,6 +23,14 @@ border-radius: 4px;
 padding: 3px;
 width: 50px;
 }
+.range_search{
+padding: 4px;
+border: 1px solid #ccc;
+border-radius: 4px;
+width: 240px;
+margin-top: 10px;
+}
+
 table {
 border-collapse: collapse;
 border: 1px solid black;
@@ -61,3 +69,4 @@ color: white;
     height: 100px;
     object-fit: cover; 
 }
+

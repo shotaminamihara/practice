@@ -4,10 +4,14 @@
 		<meta charset="UTF-8">
 		<title>商品一覧画面</title>
         <link rel="stylesheet" href="{{ asset('/css/products_list.css') }}">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+        <script src="{{ asset('/js/products_list.js') }}"></script>
     </head>
 	<body>
         <h1>商品一覧画面</h1>
-        <form action="{{route('products_list')}}" method="POST" enctype='multipart/form-data'>
+        <form id="search_form" action="{{route('products_list')}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <input type="text" class="searchbox" id="searchbox" name="searchbox" placeholder="検索キーワード">
             <select id="selectbox" class="selectbox" name="selectbox">
@@ -17,16 +21,23 @@
                 @endforeach
             </select>
             <input class="search" type="submit" value="検索">
+
+            <input type="number" class="range_search" id="priceMin" name="priceMin" placeholder="価格(下限)">
+            <label>〜</label>
+            <input type="number" id="priceMax" class="range_search" name="priceMax" placeholder="価格(上限)">
+            <input type="number" id="stockMin" class="range_search" name="stockMin" placeholder="在庫数(下限)">
+            <label>〜</label>
+            <input type="number" id="stockMax" class="range_search" name="stockMax" placeholder="在庫数(上限)">
         </form>
         <table id="productTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th class="sortable">ID</th>
                     <th>商品画像</th>
-                    <th>商品名</th>
-                    <th>価格</th>
-                    <th>在庫数</th>
-                    <th>メーカー名</th>
+                    <th class="sortable">商品名</th>
+                    <th class="sortable">価格</th>
+                    <th class="sortable">在庫数</th>
+                    <th class="sortable">メーカー名</th>
                     <th colspan="2">
                         <a href="{{route('products_registration')}}">
                             <input class="registration" id="registration" type="button" value="新規登録">
@@ -59,6 +70,5 @@
                 @endforeach
             </tbody>
         </table>
-        <script src="{{ asset('/js/products_list.js') }}"></script>
     </body>
 </html>
