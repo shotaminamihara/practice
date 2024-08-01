@@ -43,6 +43,10 @@
                     <label for="text6">在庫数</label>
                     <span>{{$product->stock}}</span>                
                 </div>
+                <div>
+                    <label for="text7">コメント</label>
+                    <span>{{$product->comment}}</tspand>
+                </div>
             </form>
             <div class="container">
                 <form action="{{route('products_edit',['id' => $product->id])}}" method="POST">
