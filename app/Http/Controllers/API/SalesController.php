@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class SalesController extends Controller
