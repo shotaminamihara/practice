@@ -18,6 +18,7 @@ $(document).ready(function() {
           success: function(response) {
             console.log('Response:', response);
             $('#productTable tbody').html($(response.data).find('tbody').html());
+            $("#productTable").trigger("update");
           }
       });
   });

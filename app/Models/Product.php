@@ -36,7 +36,7 @@ class Product extends Model
         return compact('products', 'companies');
     }
 
-    public function getProducts_search($searchbox, $selectbox,$priceMin,$priceMax,$stockMin,$stockMax,$request){
+    public function getProducts_search($searchbox, $selectbox,$priceMin,$priceMax,$stockMin,$stockMax){
         $companies = $this->getCompanies();
         $products = DB::table('products')
             ->join('companies','company_id','=','companies.id')

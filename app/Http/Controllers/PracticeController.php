@@ -55,7 +55,7 @@ class PracticeController extends Controller
         $stockMax = $request->input('stockMax');
 
         $productModel = new Product();
-        $data = $productModel->getProducts_search($searchbox, $selectbox, $priceMin, $priceMax, $stockMin, $stockMax, $request);
+        $data = $productModel->getProducts_search($searchbox, $selectbox, $priceMin, $priceMax, $stockMin, $stockMax);
 
         if ($request->ajax()) {
             return response()->json(['data' => view('products_list', $data)->render()]);
