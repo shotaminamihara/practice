@@ -102,7 +102,6 @@ class PracticeController extends Controller
     public function showProducts_delete($id) {
         try{
             $product = Product::findOrFail($id);
-            $rowCount = $product->rowCount;
             $product->delete();
             $sale = Sale::where('product_id',$id)->first();
             if($sale){
